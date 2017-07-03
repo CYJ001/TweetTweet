@@ -56,10 +56,10 @@ class Tweet {
         return tweets
     }
     
-    static func tweets(with array: [[String: Any]]) -> [Tweet] {
-        return array.flatMap({ (dictionary) -> Tweet in
-            Tweet(dictionary: dictionary)
-        })
-    }
+//    static func tweets(with array: [[String: Any]]) -> [Tweet] {
+//        return array.flatMap({ (dictionary) -> Tweet in
+//            Tweet(dictionary: dictionary)
+//        })
+//    }
 }
 

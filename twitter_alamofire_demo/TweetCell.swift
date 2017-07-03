@@ -12,9 +12,16 @@ class TweetCell: UITableViewCell {
     
     @IBOutlet weak var tweetTextLabel: UILabel!
     
+    @IBOutlet weak var userNameLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
+    @IBOutlet weak var screenNameLabel: UILabel!
     var tweet: Tweet! {
         didSet {
             tweetTextLabel.text = tweet.text
+            timeLabel.text = tweet.createdAtString
+            let userString = tweet.user.screenName
+            screenNameLabel.text = userString
+            userNameLabel.text = tweet.user.name
         }
     }
     

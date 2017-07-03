@@ -15,6 +15,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     
     @IBOutlet weak var tableView: UITableView!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -42,11 +43,13 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             if let tweets = tweets {
                 self.tweets = tweets
                 self.tableView.reloadData()
-                refreshControl.endRefreshing()
+                
             } else if let error = error {
                 print("Error getting home timeline: " + error.localizedDescription)
             }
+        
         }
+        refreshControl.endRefreshing()
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
