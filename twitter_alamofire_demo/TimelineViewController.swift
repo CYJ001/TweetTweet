@@ -11,6 +11,7 @@ import UIKit
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var tweets: [Tweet] = []
+  
     
     @IBOutlet weak var tableView: UITableView!
     
