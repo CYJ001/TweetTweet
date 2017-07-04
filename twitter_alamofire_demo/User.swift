@@ -34,12 +34,13 @@ class User {
     }
     var dictionary: [String: Any]?
     var name: String
+    var imageURL : String
     var screenName: String?
     init(dictionary: [String: Any]) {
         self.dictionary = dictionary
         name = dictionary["name"] as! String
           screenName = dictionary["screen_name"] as? String
-        
+        imageURL = (dictionary["profile_image_url"] as? String)!
 
     }
     

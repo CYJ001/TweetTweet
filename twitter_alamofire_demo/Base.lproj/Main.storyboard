@@ -178,6 +178,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="favoriteLabel" destination="b05-c1-RR9" id="dcW-ri-5ml"/>
+                                            <outlet property="profileView" destination="Qn2-wP-xY6" id="GX0-GC-hk8"/>
                                             <outlet property="retweetLabel" destination="PgQ-2a-vhS" id="Q2z-jZ-khh"/>
                                             <outlet property="screenNameLabel" destination="otL-Ol-lv2" id="2Vw-mO-m70"/>
                                             <outlet property="timeLabel" destination="zrv-7g-bcn" id="a99-wo-GzS"/>
