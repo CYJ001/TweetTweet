@@ -11,7 +11,9 @@ import UIKit
 class TweetCell: UITableViewCell {
     
     @IBOutlet weak var tweetTextLabel: UILabel!
+    @IBOutlet weak var retweetLabel: UILabel!
     
+    @IBOutlet weak var favoriteLabel: UILabel!
     @IBOutlet weak var userNameLabel: UILabel!
     @IBOutlet weak var timeLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
@@ -22,6 +24,10 @@ class TweetCell: UITableViewCell {
             let userString = tweet.user.screenName
             screenNameLabel.text = userString
             userNameLabel.text = tweet.user.name
+            let retweetString = "\(String(describing :tweet.retweetCount))"
+            retweetLabel.text = retweetString
+            let favCount = "\(String(describing: tweet.favoriteCount!))"
+            favoriteLabel.text = favCount
         }
     }
     
