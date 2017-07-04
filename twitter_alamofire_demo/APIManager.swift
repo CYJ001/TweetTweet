@@ -38,6 +38,7 @@ class APIManager: SessionManager {
                 if let error = error {
                     failure(error)
                 } else if let user = user {
+                    User.current = user
                     print("Welcome \(user.name)")
                     
                     // MARK: TODO: set User.current, so that it's persisted
