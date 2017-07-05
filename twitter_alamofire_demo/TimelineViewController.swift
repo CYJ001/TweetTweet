@@ -75,11 +75,13 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        let currentUserImage = URL(string: (User.current?.imageURL)!)
-//        let composeViewController = segue.destination as! ComposeViewController
+        let composeViewController = segue.destination as! ComposeViewController
+        composeViewController.delegate = self
 //        composeViewController.profileViewImage.af_setImage(withURL: currentUserImage!)
     }
     func did(post: Tweet) {
-    
+    tweets.insert(post, at: 0)
+        tableView.reloadData()
     }
   
     @IBAction func didTapLogout(_ sender: Any) {

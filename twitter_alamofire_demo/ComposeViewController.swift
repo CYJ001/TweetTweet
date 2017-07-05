@@ -23,9 +23,12 @@ weak var delegate: ComposeViewControllerDelegate?
         APIManager.shared.composeTweet(with: "This is my tweet 😀") { (tweet, error) in
             if let error = error {
                 print("Error composing Tweet: \(error.localizedDescription)")
+                
+                
             } else if let tweet = tweet {
                 self.delegate?.did(post: tweet)
                 print("Compose Tweet Success!")
+                self.dismiss(animated: true, completion: nil)
             }
         }
     }
