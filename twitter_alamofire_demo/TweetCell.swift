@@ -31,6 +31,7 @@ class TweetCell: UITableViewCell {
             let favCount = "\(String(describing: tweet.favoriteCount!))"
             favoriteLabel.text = favCount
             let profileURL = URL(string: tweet.user.imageURL)
+          
             profileView.af_setImage(withURL: profileURL!)
             
         }

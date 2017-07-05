@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
     
     var tweets: [Tweet] = []
   
@@ -63,6 +63,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         return cell
     }
     
+    
+   
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -71,8 +73,15 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        let currentUserImage = URL(string: (User.current?.imageURL)!)
+//        let composeViewController = segue.destination as! ComposeViewController
+//        composeViewController.profileViewImage.af_setImage(withURL: currentUserImage!)
+    }
+    func did(post: Tweet) {
     
-    
+    }
+  
     @IBAction func didTapLogout(_ sender: Any) {
         APIManager.shared.logout()
     }

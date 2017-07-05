@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         if User.current != nil{
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            let homeTimelineViewController = storyboard.instantiateViewController(withIdentifier: "TimelineViewController")
+            let homeTimelineViewController = storyboard.instantiateViewController(withIdentifier: "TweetsNavigationController")
             window?.rootViewController = homeTimelineViewController
         }
         // MARK: TODO: Check for logged in user
@@ -32,6 +32,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         return true
     }
     
+//    func composeTweet(with text: String, completion: @escaping (Tweet?, Error?) -> ()) {
+//        let urlString = "https://api.twitter.com/1.1/statuses/update.json"
+//        let parameters = ["status": text]
+//        request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default).validate().responseJSON { (response) in
+//            if response.result.isSuccess,
+//                let tweetDictionary = response.result.value as? [String: Any] {
+//                let tweet = Tweet(dictionary: tweetDictionary)
+//                completion(tweet, nil)
+//            } else {
+//                completion(nil, response.result.error)
+//            }
+//        }
+//    }
+
     // MARK: TODO: Open URL
     // OAuth step 2
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
