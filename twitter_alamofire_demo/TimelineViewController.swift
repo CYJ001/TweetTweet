@@ -38,7 +38,10 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
     }
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        tableView.reloadData()
+    }
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
        APIManager.shared.getHomeTimeLine{ (tweets, error) in
             if let tweets = tweets {
@@ -75,6 +78,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if(segue.identifier == "detailSegue"){
         let cell = sender as! UITableViewCell
         if let indexPath = tableView.indexPath(for: cell){
             let  post = tweets[indexPath.row]
@@ -82,11 +86,13 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             detailViewController.post = post
             
         }
+        }else{
 
 //        let currentUserImage = URL(string: (User.current?.imageURL)!)
-       // let composeViewController = segue.destination as! ComposeViewController
-       // composeViewController.delegate = self
+        let composeViewController = segue.destination as! ComposeViewController
+       composeViewController.delegate = self
 //        composeViewController.profileViewImage.af_setImage(withURL: currentUserImage!)
+        }
     }
     func did(post: Tweet) {
     tweets.insert(post, at: 0)
