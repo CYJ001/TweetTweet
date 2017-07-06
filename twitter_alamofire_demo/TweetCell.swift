@@ -35,6 +35,12 @@ class TweetCell: UITableViewCell {
             let profileURL = URL(string: tweet.user.imageURL)
           
             profileView.af_setImage(withURL: profileURL!)
+            if(tweet.favorited!){
+               self.favoriteButton.setImage(UIImage(named: "favor-icon-red.png"), for: .normal)
+            }
+            else{
+                    self.favoriteButton.setImage(UIImage(named: "favor-icon.png"), for: .normal)
+            }
             
         }
     }
@@ -45,19 +51,37 @@ class TweetCell: UITableViewCell {
     }
     
     @IBAction func didTapLike(_ sender: Any) {
+        if(tweet.favorited!){
+            APIManager.shared.unfavorite(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                                           print("Successfully unfavorited the following Tweet: \n\(tweet.text)")
+                        self.tweet.favorited = false
+                        self.tweet.favoriteCount!-=1
+                        self.favoriteLabel.text = String(self.tweet.favoriteCount!)
+                        self.favoriteButton.setImage(UIImage(named: "favor-icon.png"), for: .normal)
+                    }
+                
+            }
+ 
+        }
+        else{
         APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
             if let  error = error {
                 print("Error favoriting tweet: \(error.localizedDescription)")
             } else if let tweet = tweet {
+              
                 print("Successfully favorited the following Tweet: \n\(tweet.text)")
-                tweet.favorited = true
-                tweet.favoriteCount!+=1
-                self.favoriteLabel.text = String(tweet.favoriteCount!)
+                self.tweet.favorited = true
+                self.tweet.favoriteCount!+=1
+                self.favoriteLabel.text = String(self.tweet.favoriteCount!)
                 self.favoriteButton.setImage(UIImage(named: "favor-icon-red.png"), for: .normal)
             }
+            
         }
 
-        
+        }
     }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
