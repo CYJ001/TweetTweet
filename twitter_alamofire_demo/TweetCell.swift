@@ -14,6 +14,8 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var retweetLabel: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var retweetButton: UIButton!
+    @IBOutlet weak var rewteetLabel: UILabel!
     
     @IBOutlet weak var profileView: UIImageView!
     @IBOutlet weak var favoriteLabel: UILabel!
@@ -35,6 +37,12 @@ class TweetCell: UITableViewCell {
             let profileURL = URL(string: tweet.user.imageURL)
           
             profileView.af_setImage(withURL: profileURL!)
+            if(tweet.retweeted){
+                self.favoriteButton.setImage(UIImage(named: "retweet-icon-green.png"), for: .normal)
+            }
+            else{
+              self.favoriteButton.setImage(UIImage(named: "retweet-icon.png"), for: .normal)  
+            }
             if(tweet.favorited!){
                self.favoriteButton.setImage(UIImage(named: "favor-icon-red.png"), for: .normal)
             }
@@ -80,6 +88,41 @@ class TweetCell: UITableViewCell {
             }
             
         }
+
+        }
+    }
+    @IBAction func didTapRetweet(_ sender: Any) {
+        if(tweet.retweeted){
+            APIManager.shared.unRetweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error unretweeted tweet: \(error.localizedDescription)")
+                }
+                else if let tweet = tweet {
+                    print("Successfully unrewteeted the following Tweet: \n\(tweet.text)")
+                    self.tweet.retweeted = false
+                    self.tweet.retweetCount-=1
+                    self.rewteetLabel.text = String(self.tweet.retweetCount)
+                    self.retweetButton.setImage(UIImage(named: "retweet-icon.png"), for: .normal)
+                }
+
+                
+                }
+    }
+        else{
+            APIManager.shared.retweet(tweet) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error retweeted tweet: \(error.localizedDescription)")
+                }
+                else if let tweet = tweet {
+                    print("Successfully retweeted the following Tweet: \n\(tweet.text)")
+                    self.tweet.retweeted = true
+                    self.tweet.retweetCount+=1
+                    self.rewteetLabel.text = String(self.tweet.retweetCount)
+                    self.retweetButton.setImage(UIImage(named: "retweet-icon-green.png"), for: .normal)
+                }
+                
+                
+            }
 
         }
     }

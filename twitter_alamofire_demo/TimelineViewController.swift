@@ -75,9 +75,17 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         // Dispose of any resources that can be recreated.
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let cell = sender as! UITableViewCell
+        if let indexPath = tableView.indexPath(for: cell){
+            let  post = tweets[indexPath.row]
+            let detailViewController = segue.destination as! DetailViewController
+            detailViewController.post = post
+            
+        }
+
 //        let currentUserImage = URL(string: (User.current?.imageURL)!)
-        let composeViewController = segue.destination as! ComposeViewController
-        composeViewController.delegate = self
+       // let composeViewController = segue.destination as! ComposeViewController
+       // composeViewController.delegate = self
 //        composeViewController.profileViewImage.af_setImage(withURL: currentUserImage!)
     }
     func did(post: Tweet) {
