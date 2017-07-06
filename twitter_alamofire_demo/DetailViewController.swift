@@ -16,6 +16,36 @@ class DetailViewController: UIViewController {
     @IBOutlet weak var screenLabel: UILabel!
     @IBOutlet weak var userLabel: UILabel!
     @IBAction func didTapRetweet(_ sender: Any) {
+        if(post!.retweeted){
+            APIManager.shared.unRetweet(post!) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    print("Successfully unfavorited the following Tweet: \n\(tweet.text)")
+                    self.post!.retweeted = false
+                    self.post!.retweetCount-=1
+                    self.retweetButton.setImage(UIImage(named: "retweet-icon.png"), for: .normal)
+                }
+                
+            }
+            
+        }
+        else{
+            APIManager.shared.retweet(post!) { (tweet: Tweet?, error: Error?) in
+                if let  error = error {
+                    print("Error favoriting tweet: \(error.localizedDescription)")
+                } else if let tweet = tweet {
+                    
+                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                    self.post!.retweeted = true
+                    self.post!.retweetCount+=1
+                    self.retweetButton.setImage(UIImage(named: "retweet-icon-green.png"), for: .normal)
+                }
+                
+            }
+            
+        }
+        
         
     }
     @IBAction func didTapLike(_ sender: Any) {

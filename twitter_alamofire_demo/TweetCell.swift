@@ -38,10 +38,10 @@ class TweetCell: UITableViewCell {
           
             profileView.af_setImage(withURL: profileURL!)
             if(tweet.retweeted){
-                self.favoriteButton.setImage(UIImage(named: "retweet-icon-green.png"), for: .normal)
+                self.retweetButton.setImage(UIImage(named: "retweet-icon-green.png"), for: .normal)
             }
             else{
-              self.favoriteButton.setImage(UIImage(named: "retweet-icon.png"), for: .normal)  
+              self.retweetButton.setImage(UIImage(named: "retweet-icon.png"), for: .normal)
             }
             if(tweet.favorited!){
                self.favoriteButton.setImage(UIImage(named: "favor-icon-red.png"), for: .normal)
