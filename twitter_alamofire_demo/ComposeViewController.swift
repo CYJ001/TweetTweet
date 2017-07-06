@@ -8,11 +8,15 @@
 
 import UIKit
 import AlamofireImage
+import RSKPlaceholderTextView
 protocol ComposeViewControllerDelegate : class{
     func did(post: Tweet)
 }
 
 class ComposeViewController: UIViewController {
+   
+    @IBOutlet weak var textFieldView: RSKPlaceholderTextView!
+    
     @IBAction func dismissButtonTapped(_ sender: Any) {
         self.dismiss(animated: true, completion: nil)
     }
@@ -20,7 +24,7 @@ class ComposeViewController: UIViewController {
     @IBOutlet weak var profileViewImage: UIImageView!
 weak var delegate: ComposeViewControllerDelegate?
     @IBAction func didTapPost(_ sender: Any) {
-        APIManager.shared.composeTweet(with: "This is my tweet 😀") { (tweet, error) in
+        APIManager.shared.composeTweet(with: textFieldView.text) { (tweet, error) in
             if let error = error {
                 print("Error composing Tweet: \(error.localizedDescription)")
                 

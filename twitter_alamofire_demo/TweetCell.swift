@@ -13,6 +13,7 @@ class TweetCell: UITableViewCell {
     
     @IBOutlet weak var tweetTextLabel: UILabel!
     @IBOutlet weak var retweetLabel: UILabel!
+    @IBOutlet weak var favoriteButton: UIButton!
     
     @IBOutlet weak var profileView: UIImageView!
     @IBOutlet weak var favoriteLabel: UILabel!
@@ -21,6 +22,7 @@ class TweetCell: UITableViewCell {
     @IBOutlet weak var screenNameLabel: UILabel!
     var tweet: Tweet! {
         didSet {
+            
             tweetTextLabel.text = tweet.text
             timeLabel.text = tweet.createdAtString
             let userString = tweet.user.screenName
@@ -42,6 +44,21 @@ class TweetCell: UITableViewCell {
         // Initialization code
     }
     
+    @IBAction func didTapLike(_ sender: Any) {
+        APIManager.shared.favorite(tweet) { (tweet: Tweet?, error: Error?) in
+            if let  error = error {
+                print("Error favoriting tweet: \(error.localizedDescription)")
+            } else if let tweet = tweet {
+                print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                tweet.favorited = true
+                tweet.favoriteCount!+=1
+                self.favoriteLabel.text = String(tweet.favoriteCount!)
+                self.favoriteButton.setImage(UIImage(named: "favor-icon-red.png"), for: .normal)
+            }
+        }
+
+        
+    }
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
         

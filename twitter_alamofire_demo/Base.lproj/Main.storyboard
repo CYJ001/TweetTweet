@@ -87,6 +87,9 @@
                                                     </constraints>
                                                     <state key="normal" image="favor-icon"/>
                                                     <state key="selected" image="favor-icon-red"/>
+                                                    <connections>
+                                                        <action selector="didTapLike:" destination="U1g-kw-izy" eventType="touchUpInside" id="h9A-Pu-I9E"/>
+                                                    </connections>
                                                 </button>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vGe-3S-xZT">
                                                     <rect key="frame" x="273" y="68" width="45" height="45"/>
@@ -177,6 +180,7 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="favoriteButton" destination="LHx-n4-1kq" id="y2J-wL-fxi"/>
                                             <outlet property="favoriteLabel" destination="b05-c1-RR9" id="dcW-ri-5ml"/>
                                             <outlet property="profileView" destination="Qn2-wP-xY6" id="GX0-GC-hk8"/>
                                             <outlet property="retweetLabel" destination="PgQ-2a-vhS" id="Q2z-jZ-khh"/>
@@ -228,16 +232,17 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Au5-tU-9Y3" customClass="RSKPlaceholderTextView">
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" fixedFrame="YES" text="What's happening?" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Au5-tU-9Y3" customClass="RSKPlaceholderTextView">
                                 <rect key="frame" x="39" y="127" width="240" height="128"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="What's Happening?"/>
                                     <userDefinedRuntimeAttribute type="color" keyPath="placeholderColor">
-                                        <color key="value" cocoaTouchSystemColor="darkTextColor"/>
+                                        <color key="value" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </textView>
@@ -269,6 +274,7 @@
                     </view>
                     <connections>
                         <outlet property="profileViewImage" destination="IfZ-We-99a" id="YmJ-Ep-J7A"/>
+                        <outlet property="textFieldView" destination="Au5-tU-9Y3" id="Why-MV-u0b"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="9zW-Ci-Iz8" userLabel="First Responder" sceneMemberID="firstResponder"/>
