@@ -50,7 +50,12 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/aTa27lk.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/aTa27lk.gif' title='Launch Screen and persistent user' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/8EwsqMB.gif' title='Retweet and favorite on timeline' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/0LotrWn.gif' title='Composing a tweet' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/90mZ3HO.gif' title='Different orientation and refresh' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/I6IDBTQ.gif' title='Profile and logout' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/t5z6znq.gif' title='Profile and logout' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
