@@ -13,10 +13,10 @@ The following **required** functionality is completed:
 - [x] User can Logout
 - [x] User can view last 20 tweets from their home timeline
 - [x] In the home timeline, user can view tweet with the user profile picture, username, tweet text, and timestamp.
-- [] User can pull to refresh.
+- [x] User can pull to refresh.
 - [x] User can tap the retweet and favorite buttons in a tweet cell to retweet and/or favorite a tweet.
 - [x] User can compose a new tweet by tapping on a compose button.
-- [ ] Using AutoLayout, the Tweet cell should adjust it's layout for iPhone 7, Plus and SE device sizes as well as accommodate device rotation.
+- [x] Using AutoLayout, the Tweet cell should adjust it's layout for iPhone 7, Plus and SE device sizes as well as accommodate device rotation.
 - [x] The current signed in user will be persisted across restarts
 
 The following **optional** features are implemented:
@@ -50,7 +50,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='http://i.imgur.com/aTa27lk.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

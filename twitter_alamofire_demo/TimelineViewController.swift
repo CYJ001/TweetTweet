@@ -11,12 +11,12 @@ import UIKit
 class TimelineViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, ComposeViewControllerDelegate {
     
     var tweets: [Tweet] = []
-  
+    
     
     @IBOutlet weak var tableView: UITableView!
     var refreshControl = UIRefreshControl()
     
-   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -44,22 +44,23 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
         tableView.reloadData()
     }
     func refreshControlAction(_ refreshControl: UIRefreshControl) {
-       APIManager.shared.getHomeTimeLine{ (tweets, error) in
+        APIManager.shared.getHomeTimeLine{ (tweets, error) in
             if let tweets = tweets {
                 self.tweets = tweets
                 self.tableView.reloadData()
                 print("Was succsessful")
-               
-                print("stopped refreshing")
+                
                 
             } else if let error = error {
                 print("Error getting home timeline: " + error.localizedDescription)
             }
-                  }
-        tableView.reloadData()
-
-        self.refreshControl.endRefreshing()
-
+            self.refreshControl.endRefreshing()
+            print("stopped refreshing")
+        }
+    
+        
+       
+        
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
@@ -74,8 +75,8 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
-   
-   
+    
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
@@ -86,26 +87,26 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if(segue.identifier == "detailSegue"){
-        let cell = sender as! UITableViewCell
-        if let indexPath = tableView.indexPath(for: cell){
-            let  post = tweets[indexPath.row]
-            let detailViewController = segue.destination as! DetailViewController
-            detailViewController.post = post
-            
-        }
+            let cell = sender as! UITableViewCell
+            if let indexPath = tableView.indexPath(for: cell){
+                let  post = tweets[indexPath.row]
+                let detailViewController = segue.destination as! DetailViewController
+                detailViewController.post = post
+                
+            }
         }else{
-
-//        let currentUserImage = URL(string: (User.current?.imageURL)!)
-        let composeViewController = segue.destination as! ComposeViewController
-       composeViewController.delegate = self
-//        composeViewController.profileViewImage.af_setImage(withURL: currentUserImage!)
+            
+            //        let currentUserImage = URL(string: (User.current?.imageURL)!)
+            let composeViewController = segue.destination as! ComposeViewController
+            composeViewController.delegate = self
+            //        composeViewController.profileViewImage.af_setImage(withURL: currentUserImage!)
         }
     }
     func did(post: Tweet) {
-    tweets.insert(post, at: 0)
+        tweets.insert(post, at: 0)
         tableView.reloadData()
     }
-  
+    
     @IBAction func didTapLogout(_ sender: Any) {
         APIManager.shared.logout()
     }
