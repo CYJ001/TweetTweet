@@ -28,8 +28,8 @@ class TweetCell: UITableViewCell {
             tweetTextLabel.text = tweet.text
             timeLabel.text = tweet.createdAtString
             let userString = tweet.user.screenName
-            screenNameLabel.text = userString
-            userNameLabel.text = tweet.user.name
+            screenNameLabel.text = "@" + userString!
+                userNameLabel.text = tweet.user.name
             let retweetString = "\(String(describing :tweet.retweetCount))"
             retweetLabel.text = retweetString
             let favCount = "\(String(describing: tweet.favoriteCount!))"

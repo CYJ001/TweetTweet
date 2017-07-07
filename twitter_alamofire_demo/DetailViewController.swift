@@ -19,9 +19,9 @@ class DetailViewController: UIViewController {
         if(post!.retweeted){
             APIManager.shared.unRetweet(post!) { (tweet: Tweet?, error: Error?) in
                 if let  error = error {
-                    print("Error favoriting tweet: \(error.localizedDescription)")
+                    print("Error untweeting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
-                    print("Successfully unfavorited the following Tweet: \n\(tweet.text)")
+                    print("Successfully untweeted the following Tweet: \n\(tweet.text)")
                     self.post!.retweeted = false
                     self.post!.retweetCount-=1
                     self.retweetButton.setImage(UIImage(named: "retweet-icon.png"), for: .normal)
@@ -33,10 +33,10 @@ class DetailViewController: UIViewController {
         else{
             APIManager.shared.retweet(post!) { (tweet: Tweet?, error: Error?) in
                 if let  error = error {
-                    print("Error favoriting tweet: \(error.localizedDescription)")
+                    print("Error retweeting tweet: \(error.localizedDescription)")
                 } else if let tweet = tweet {
                     
-                    print("Successfully favorited the following Tweet: \n\(tweet.text)")
+                    print("Successfully retweeted the following Tweet: \n\(tweet.text)")
                     self.post!.retweeted = true
                     self.post!.retweetCount+=1
                     self.retweetButton.setImage(UIImage(named: "retweet-icon-green.png"), for: .normal)

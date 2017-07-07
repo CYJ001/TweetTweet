@@ -14,6 +14,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
   
     
     @IBOutlet weak var tableView: UITableView!
+    var refreshControl = UIRefreshControl()
     
    
     
@@ -34,7 +35,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
                 print("Error getting home timeline: " + error.localizedDescription)
             }
         }
-        let refreshControl = UIRefreshControl()
+        
         refreshControl.addTarget(self, action: #selector(refreshControlAction(_:)), for: UIControlEvents.valueChanged)
         tableView.insertSubview(refreshControl, at: 0)
     }
@@ -47,13 +48,18 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
             if let tweets = tweets {
                 self.tweets = tweets
                 self.tableView.reloadData()
+                print("Was succsessful")
+               
+                print("stopped refreshing")
                 
             } else if let error = error {
                 print("Error getting home timeline: " + error.localizedDescription)
             }
-        
-        }
-        refreshControl.endRefreshing()
+                  }
+        tableView.reloadData()
+
+        self.refreshControl.endRefreshing()
+
     }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return tweets.count
@@ -68,6 +74,7 @@ class TimelineViewController: UIViewController, UITableViewDelegate, UITableView
     }
     
     
+   
    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
